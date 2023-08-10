@@ -1,7 +1,8 @@
 # bookstore
+Use this project for practicing any frontend application requiring REST API calls.
 
 This project is implemented to showcase REST API using Spring DATA JPA entity and also Rest Controller. 
-BookStore Rest API for Angular Practice
+
 
 Run the Project using BookstoreApplication.java will generate the following JPA REST resources,
 
