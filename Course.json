@@ -1,0 +1,74 @@
+[
+		{
+		"courseName":"Java",
+		"description":"Java 9 Course",
+		"trainingModel":"Online",
+		"discount":5000,
+		"price":15000,
+		"offerPrice":10000,
+		"workingProfessional":"Online Course",
+		"duration":"200Hrs",
+		"trainer":"Srinivas",
+		"enrollments":100
+		},
+		{
+		"courseName":"Angular",
+		"description":"Angular 16 Course",
+		"trainingModel":"Online",
+		"discount":5000,
+		"price":15000,
+		"offerPrice":10000,
+		"workingProfessional":"Online Course",
+		"duration":"200Hrs",
+		"trainer":"Srinivas",
+		"enrollments":100
+		},
+		{
+		"courseName":"React",
+		"description":"React Course",
+		"trainingModel":"Classroom",
+		"discount":5000,
+		"price":15000,
+		"offerPrice":10000,
+		"workingProfessional":"Online Course",
+		"duration":"200Hrs",
+		"trainer":"Srinivas",
+		"enrollments":100
+		},
+		{
+		"courseName":"SpringBoot",
+		"description":"SpringBoot Course",
+		"trainingModel":"Online",
+		"discount":5000,
+		"price":15000,
+		"offerPrice":10000,
+		"workingProfessional":"Online Course",
+		"duration":"200Hrs",
+		"trainer":"Srinivas",
+		"enrollments":100
+		},
+		{
+		"courseName":"DevOps",
+		"description":"DevOps Course",
+		"trainingModel":"Online",
+		"discount":5000,
+		"price":15000,
+		"offerPrice":10000,
+		"workingProfessional":"Online Course",
+		"duration":"200Hrs",
+		"trainer":"Srinivas",
+		"enrollments":100
+		},
+		{
+		"courseName":"AWS",
+		"description":"AWS Course",
+		"trainingModel":"Online",
+		"discount":5000,
+		"price":15000,
+		"offerPrice":10000,
+		"workingProfessional":"Online Course",
+		"duration":"200Hrs",
+		"trainer":"Srinivas",
+		"enrollments":100
+		}
+]
