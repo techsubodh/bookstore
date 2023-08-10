@@ -1,5 +1,5 @@
 # bookstore
-Use this project for practicing any frontend application requiring REST API calls.
+Use this project for practicing any front-end application requiring REST API calls.
 
 This project is implemented to showcase REST API using Spring DATA JPA entity and also Rest Controller. 
 
