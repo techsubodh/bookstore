@@ -13,21 +13,39 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jlc.bookstore.entity.service.BookService;
 import com.jlc.bookstore.entity.service.CourseService;
+import com.jlc.bookstore.model.BookDto;
 
 @SpringBootApplication
 public class BookstoreApplication implements CommandLineRunner{
 
+	/**
+	 * Read Properties value 
+	 * @Value("${property_key_name}")
+	 * @Value("${property_key_name:default_value}") - Setting default values
+	 */
 	@Value("${JSONFIleName}")
 	private String courseJSONFile;
 	
 	@Autowired
 	private CourseService courseService;
+	
+	@Autowired
+	BookService bookService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
@@ -43,6 +61,8 @@ public class BookstoreApplication implements CommandLineRunner{
 			public void addCorsMappings(CorsRegistry registry) {
 				///registry.addMapping("/rest/*").allowedOrigins("http://localhost:4200/");
 				registry.addMapping("/rest/*").allowedOrigins("*");
+				registry.addMapping("/rest/full-courses/*").allowedOrigins("*");
+				//registry.addMapping("/api/books/add").allowedOrigins("*");
 				
 			}
 		};
@@ -52,6 +72,33 @@ public class BookstoreApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		createCourse(courseJSONFile);
+		createBooks();
+	}
+
+	/**
+	 *  Adding an in-memory user, this will avoid 403
+	 * @return
+	 */
+	@Bean
+	public InMemoryUserDetailsManager userDetailsService() {
+	    UserDetails user = User.withUsername("user")
+	      .password(encoder().encode("userPass"))
+	      .roles("USER")
+	      .build();
+	    return new InMemoryUserDetailsManager(user);
+	}
+	 
+	@Bean
+	public PasswordEncoder encoder() {
+	    return new BCryptPasswordEncoder();
+	}
+	
+	private void createBooks() {
+		bookService.createBook(new BookDto("Word Power Made Easy", "Norman Lewis", 20.00, "English Learning", "Anchor Books"));
+		bookService.createBook(new BookDto("Word Power Made Easy-2", "Norman Lewis", 30.00, "English Learning", "Anchor Books"));
+		bookService.createBook(new BookDto("Word Power Made Easy-3", "Norman Lewis", 40.00, "English Learning", "Anchor Books"));
+		
+		System.err.println("BookstoreApplication.createBooks()  --Total Count:"+bookService.totalAvilableBooks());
 	}
 
 	private void createCourse(String courseJSONFile2) {
